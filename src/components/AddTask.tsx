@@ -5,7 +5,7 @@ import { TasksList } from "./TasksList";
 export function AddTask() {
   const [tasks, setTasks] = useState([{    
     id: 0,
-    content: '',
+    content: 'Tarefa 1',
     done: false,
   }]);
 
@@ -15,7 +15,7 @@ export function AddTask() {
     event.preventDefault();
 
     setTasks([...tasks, {
-      id: tasks.length + 1,
+      id: new Date().getTime(),
       content: newTaskContent,
       done: false,
     }])
@@ -26,6 +26,26 @@ export function AddTask() {
   function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
     event.target.setCustomValidity("");
     setNewTaskContent(event.target.value);
+  }
+
+  function deleteTask(id: number) {
+    const tasksWithoutDeleteOne = tasks.filter(task => task.id !== id);
+
+    setTasks(tasksWithoutDeleteOne);
+  }
+
+  function markAsDone(id: number) {
+    const tasksWithTaskMarkedDone = tasks.map((task) => {
+      if(task.id === id){
+        task.done = !task.done;
+      } 
+
+      return task;
+    })
+
+    console.log(tasksWithTaskMarkedDone);
+
+    setTasks(tasksWithTaskMarkedDone);
   }
   
   return (
@@ -47,7 +67,7 @@ export function AddTask() {
       </form>
       
       <div>
-          <TasksList tasks={tasks}/>
+          <TasksList tasks={tasks} deleteTask={deleteTask} markAsDone={markAsDone}/>
       </div>
     </div>
   )

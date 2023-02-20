@@ -76,6 +76,7 @@
 
   background: #333333;
   border-radius: 999px;
+  color: white;
 
   /* Inside auto layout */
 
@@ -128,6 +129,7 @@
 
   width: 25px;
   height: 19px;
+  color: white;
 
   /* Gray 400 */
 
