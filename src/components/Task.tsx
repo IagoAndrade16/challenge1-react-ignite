@@ -1,12 +1,21 @@
 import styles from "./Task.module.css";
 import { Trash } from "phosphor-react";
+import { ITask } from "./TasksList";
 
-export function Task() {
+export function Task({ content, id, done, onDeleteTask, onMarkAsDone}: ITask) {
+  function handleDeleteComment() {
+    onDeleteTask!(id);
+  }
+
+  function handleMarkAsDone() {
+    onMarkAsDone!(id);
+  }
+
   return (
     <div className={styles.task}>
-      <input type="checkbox" className={styles.check}/>
-      <span className={styles.taskTitle}>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</span>
-      <button className={styles.deleteButton}><Trash size={24} color={"red"}/></button>
+      <input checked={done} type="checkbox" className={styles.check} onChange={handleMarkAsDone} />
+      <span className={styles.taskTitle}>{content}</span>
+      <button className={styles.deleteButton} onClick={handleDeleteComment}><Trash size={24} color={"red"}/></button>
     </div>
   )
 }
