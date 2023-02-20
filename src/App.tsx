@@ -1,6 +1,5 @@
 import { AddTask } from "./components/AddTask"
 import { Sidebar } from "./components/Sidebar"
-import styles from "./App.module.css";
 
 function App() {
 
@@ -12,6 +11,7 @@ function App() {
         <AddTask />
 
       </div>
+
     </div>
    
   )
